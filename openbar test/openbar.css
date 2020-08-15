@@ -14,10 +14,18 @@
   position: fixed;
   justify-content: left;
   box-shadow: 0 4px 10px -10px rgba(0, 0, 0, 0.6);
+  font-weight: 800;
+}
+
+#prompt {
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .main-content {
-  padding-top: 100px
+  padding-top: 100px;
+  font-weight: 200;
+  letter-spacing: 1px;
 }
 
 .nav-links {
@@ -25,4 +33,21 @@
   top: 1.25rem;
   right: 1rem;
   text-align: left;
+}
+
+.nav-link {
+  color: black;
+}
+
+.divider:hover {
+  color: black;
+}
+
+h2, h3 {
+  text-align: center;
+}
+
+#optional {
+  padding-right: 2em;
+  padding-left: 2em;
 }
