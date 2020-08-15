@@ -1,0 +1,28 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Nav bar */
+.nav {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 84px;
+  z-index: 1000;
+  letter-spacing: .8px;
+  position: fixed;
+  justify-content: left;
+  box-shadow: 0 4px 10px -10px rgba(0, 0, 0, 0.6);
+}
+
+.main-content {
+  padding-top: 100px
+}
+
+.nav-links {
+  position: fixed;
+  top: 1.25rem;
+  right: 1rem;
+  text-align: left;
+}
