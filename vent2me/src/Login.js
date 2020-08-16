@@ -8,7 +8,7 @@ export default class Login extends Component {
     this.state = {
       error: null,
       email: "",
-      password: ""
+      password: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,7 +16,7 @@ export default class Login extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -41,7 +41,7 @@ export default class Login extends Component {
           <h1>
             Login to
             <Link className="title ml-2" to="/">
-              Chatty
+              OPENBAR
             </Link>
           </h1>
           <p className="lead">
@@ -71,14 +71,15 @@ export default class Login extends Component {
             {this.state.error ? (
               <p className="text-danger">{this.state.error}</p>
             ) : null}
-            <button className="btn btn-primary px-5" type="submit">Login</button>
+            <button className="btn btn-primary px-5" type="submit">
+              Login
+            </button>
           </div>
           <hr />
           <p>
             Don't have an account? <Link to="/signup">Sign up</Link>
           </p>
         </form>
-
       </div>
     );
   }

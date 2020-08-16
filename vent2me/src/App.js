@@ -47,6 +47,7 @@ export default class App extends Component {
           <PrivateRoute path="/maincontent" authenticated={this.state.authenticated} component={MainContent}></PrivateRoute>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
+          <Redirect to="/login" /> {/* Default Page*/}
         </Switch>
       </Router>
     );
