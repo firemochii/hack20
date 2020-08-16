@@ -1,0 +1,1 @@
+export const options = ['School', 'Money', 'Relationships', 'Family', 'Friends', 'Jobs'];
