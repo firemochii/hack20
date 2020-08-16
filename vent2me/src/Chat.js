@@ -65,19 +65,19 @@ export default class Chat extends Component {
                     <ul>
                       <li>
                         <div>
-                                <a href="url">UW Mental Health</a>
+                                <a href="https://wellbeing.uw.edu/topic/mental-health/">UW Mental Health</a>
                                 <p>some info about uw mental health</p>
                         </div>
                       </li>
                       <li>
                         <div>
-                            <a href="url">Let's Talk</a>
+                            <a href="https://wellbeing.uw.edu/virtual-lets-talk/">Let's Talk</a>
                             <p>some info about uw let's talk</p>
                         </div>
                       </li>
                       <li>
                             <div>
-                                <a href="url">Other Resource</a>
+                                <a href="https://wellbeing.uw.edu/topic/mental-health/">Other Resource</a>
                                 <p>some info about this other resource</p>
                             </div>
                       </li>
