@@ -8,7 +8,7 @@ export default class Chat extends Component {
 	  super(props);
 	  this.state = {
     	user: auth().currentUser,
-    	room: '',
+    	room: this.props.location.state.roomId,
 		chats: [],
 		content: '',
 		readError: null,
@@ -23,7 +23,7 @@ export default class Chat extends Component {
     async componentDidMount() {
         this.setState({ readError: null });
         try {
-          db.ref("chats").on("value", snapshot => {
+          db.ref("chats/" + this.state.room + "/messages").on("value", snapshot => {
             let chats = [];
             snapshot.forEach((snap) => {
               chats.push(snap.val());
@@ -39,7 +39,7 @@ export default class Chat extends Component {
         event.preventDefault();
         this.setState({ writeError: null });
         try {
-          await db.ref("chats").push({
+          await db.ref("chats/" + this.state.room + "/messages").push({
             content: this.state.content,
             timestamp: Date.now(),
             uid: this.state.user.uid
