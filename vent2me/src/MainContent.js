@@ -12,7 +12,9 @@ export default class MainContent extends Component {
     this.state = {
       selectedButtons: new Set(),
       user: auth().currentUser,
-      isSubmitted: false
+      isSubmitted: false,
+      foundPartner: false,
+      roomId: ''
     }
   }
 
@@ -30,15 +32,29 @@ export default class MainContent extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-        await db.ref("chats").push({
-        users: [auth().currentUser.uid],
-        messages: null
-      });
-      this.setState({isSubmitted: true});
-    } catch (error) {
-      console.log(error);
+    this.setState({isSubmitted: true});
+
+    // add to queue
+    /*
+    let queue = new Set();
+    db.ref("queue").on("value", snapshot => {
+      snapshot.forEach((snap) => {
+        queue.add(snap.val());
+      }
     }
+    if queue.has()
+    */
+    console.log(this.state.selectedButtons)
+    await db.ref("chats/queue").push({
+      uid: this.state.user.uid,
+      struggles: Array.from(this.state.selectedButtons)
+    })
+
+    // check if room created
+
+
+    // redirect to room
+    this.setState({foundPartner: true});
   }
 
   render() {
@@ -49,8 +65,11 @@ export default class MainContent extends Component {
         addToSelectedButtons={this.addToSelectedButtons}
         name={options[i]}/>)
     }
-  if (this.state.isSubmitted) {
-    return <Redirect to='/chat' />;
+  if (this.state.foundPartner) {
+    return <Redirect to={{
+      pathname: '/chat',
+      state: { roomId: this.state.roomId }
+  }} />;
   } else {
     return (
       <main className="main-content">
@@ -95,7 +114,7 @@ export default class MainContent extends Component {
               </div>
               <div className="row">
                 <div className="col d-flex justify-content-center">
-                  <button className="btn btn-primary" type="submit">
+                  <button className="btn btn-primary" type="submit" disabled={this.state.isSubmitted}>
                     Find a partner!
                   </button>
                 </div>
@@ -107,3 +126,17 @@ export default class MainContent extends Component {
   }
   }
 }
+/* -- Creates room --
+
+    try {
+      let room = await db.ref("chats").push({
+        users: [auth().currentUser.uid],
+        messages: null
+      });
+      this.setState({
+        roomId: room.key,
+      });
+    } catch (error) {
+     console.log(error);
+    }
+*/
