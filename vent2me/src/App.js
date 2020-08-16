@@ -11,6 +11,7 @@ import {
 import Chat from './Chat';
 import Signup from './Signup';
 import Login from './Login';
+import MainContent from './MainContent'
 import { auth } from './services/firebase';
 
 export default class App extends Component {
@@ -43,6 +44,7 @@ export default class App extends Component {
       <Router>
         <Switch>
           <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
+          <PrivateRoute path="/maincontent" authenticated={this.state.authenticated} component={MainContent}></PrivateRoute>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
         </Switch>
@@ -68,7 +70,7 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
       {...rest}
       render={(props) => authenticated === false
         ? <Component {...props} />
-        : <Redirect to='/chat' />}
+        : <Redirect to='/maincontent' />}
     />
   )
 }

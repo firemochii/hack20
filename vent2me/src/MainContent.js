@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-
+import { Redirect } from "react-router-dom";
+import { auth } from "./services/firebase";
+import { db } from "./services/firebase";
 import ButtonOption from './ButtonOption'
 import { options } from './config.js'
 
@@ -8,27 +10,35 @@ export default class MainContent extends Component {
     super(props);
 
     this.state = {
-      selectedButtons: new Set()
+      selectedButtons: new Set(),
+      user: auth().currentUser,
+      isSubmitted: false
     }
   }
 
   removeFromSelectedButtons = (name) => {
-
     this.setState({
       selectButtons: this.state.selectedButtons.delete(name)
     })
-    console.log("Deleted " + name);
-
-    console.log(this.state.selectedButtons);
   }
 
   addToSelectedButtons = (name) => {
     this.setState({
       selectButtons: this.state.selectedButtons.add(name)
     })
-    console.log("Added " + name);
+  }
 
-    console.log(this.state.selectedButtons);
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+        await db.ref("chats").push({
+        users: [auth().currentUser.uid],
+        messages: null
+      });
+      this.setState({isSubmitted: true});
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -39,7 +49,9 @@ export default class MainContent extends Component {
         addToSelectedButtons={this.addToSelectedButtons}
         name={options[i]}/>)
     }
-
+  if (this.state.isSubmitted) {
+    return <Redirect to='/chat' />;
+  } else {
     return (
       <main className="main-content">
           <div className="container">
@@ -48,7 +60,7 @@ export default class MainContent extends Component {
                 <h2 id="prompt">What are you struggling with?</h2>
               </div>
             </div>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="row form-group">
                 {storedOptions}
               </div>
@@ -92,5 +104,6 @@ export default class MainContent extends Component {
           </div>
         </main>
     )
+  }
   }
 }
