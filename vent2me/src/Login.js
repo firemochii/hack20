@@ -32,7 +32,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid loginpage">
         <form
           className="mt-5 py-5 px-5"
           autoComplete="off"

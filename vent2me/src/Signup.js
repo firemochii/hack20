@@ -33,13 +33,12 @@ export default class SignUp extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <h1>
-            Sign Up to
-            <Link to="/"> OPENBAR</Link>
+        <form onSubmit={this.handleSubmit} className="signup">
+          <h1 id="signupto">
+            Sign Up to OPENBAR
           </h1>
           <p>Fill in the form below to create an account.</p>
-          <div>
+          <div className="signupInput">
             <input
               placeholder="Email"
               name="email"
@@ -48,7 +47,7 @@ export default class SignUp extends Component {
               value={this.state.email}
             ></input>
           </div>
-          <div>
+          <div className="signupInput">
             <input
               placeholder="Password"
               name="password"
@@ -59,7 +58,7 @@ export default class SignUp extends Component {
           </div>
           <div>
             {this.state.error ? <p>{this.state.error}</p> : null}
-            <button type="submit">Sign up</button>
+            <button type="submit" className='btn'>Sign up</button>
           </div>
           <hr></hr>
           <p>

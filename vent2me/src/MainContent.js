@@ -54,7 +54,7 @@ export default class MainContent extends Component {
   } else {
     return (
       <main className="main-content">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col">
                 <h2 id="prompt">What are you struggling with?</h2>

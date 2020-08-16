@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { auth } from "./services/firebase";
 import { db } from "./services/firebase";
+import NavBar from "./Navbar";
 
 export default class Chat extends Component {
 	constructor(props) {
@@ -58,9 +59,36 @@ export default class Chat extends Component {
     render() {
         return (
             <div>
-              <div className="chats">
+            
+              <NavBar />       
+              <div class="row chatpage">
+                <div class="column col1">
+                  <h1>Resources</h1>
+                    <ul>
+                      <li>
+                        <div>
+                                <a href="url">UW Mental Health</a>
+                                <p>some info about uw mental health</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                            <a href="url">Let's Talk</a>
+                            <p>some info about uw let's talk</p>
+                        </div>
+                      </li>
+                      <li>
+                            <div>
+                                <a href="url">Other Resource</a>
+                                <p>some info about this other resource</p>
+                            </div>
+                      </li>
+                    </ul>
+                </div>
+              <div class="column col-8">
+              <div className="chats container">
                 {this.state.chats.map(chat => {
-                  return <p key={chat.timestamp}>{chat.content}</p>
+                  return <p className="container" key={chat.timestamp}>{chat.content}</p>
                 })}
               </div>
               <form onSubmit={this.handleSubmit}>
@@ -71,6 +99,8 @@ export default class Chat extends Component {
               <div>
                 Login in as: <strong>{this.state.user.email}</strong>
               </div>
+            </div>
+            </div>
             </div>
           );
       }
