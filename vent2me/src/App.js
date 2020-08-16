@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import firebase from 'firebase'
 import NavBar from "./Navbar";
 import {
   Route,
@@ -39,8 +40,15 @@ export default class App extends Component {
     })
   }
 
+  handleSignOut = () => {
+    firebase.auth().signOut()
+  }
+
   render() {
     return this.state.loading === true ? <h2>Loading...</h2> : (
+
+    <div>
+      <NavBar handleSignOut={this.handleSignOut}/>
       <Router>
         <Switch>
           <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
@@ -50,6 +58,8 @@ export default class App extends Component {
           <Redirect to="/login" /> {/* Default Page*/}
         </Switch>
       </Router>
+
+      </div>
     );
   }
 }

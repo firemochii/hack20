@@ -77,7 +77,7 @@ export default class Login extends Component {
           </div>
           <hr />
           <p>
-            Don't have an account? <Link to="/signup">Sign up</Link>
+            Don't have an account? <Link to="/signup" >Sign up</Link>
           </p>
         </form>
       </div>

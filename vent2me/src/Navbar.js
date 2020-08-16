@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
 export default class NavBar extends Component {
+  handleSignOut = () => {
+    this.props.handleSignOut();
+  }
+
   render() {
     return (
       <nav className="nav navbar navbar-expand bg-white">
@@ -21,7 +25,7 @@ export default class NavBar extends Component {
               </span>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="#" onClick={this.handleSignOut}>
                 SIGN OUT
               </a>
             </li>

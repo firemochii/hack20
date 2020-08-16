@@ -58,9 +58,7 @@ export default class Chat extends Component {
 
     render() {
         return (
-            <div>
-            
-              <NavBar />       
+            <div>     
               <div class="row chatpage">
                 <div class="column col1">
                   <h1>Resources</h1>
